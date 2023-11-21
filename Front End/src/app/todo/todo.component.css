@@ -1,0 +1,263 @@
+/* Add your global styles here */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #5B5E60;
+  }
+  
+  .nav {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #232323;
+    height: 50px;
+    color: white;
+  }
+  .img-icon{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    flex-grow: 500;
+  }
+  .nav img{
+    height: 100%;
+    padding-left: 20px;
+  }
+  
+  /* Search container */
+  .search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #B6A3C2;
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .search-input {
+    padding: 5px;
+    margin-right: 100px;
+    background-color: transparent;
+    border: none;
+  }
+  .search-icon{
+    color: #655586;
+    margin-right: 10px;
+  } 
+
+  .tooltip {
+    position: relative;
+    align-items: center;
+    margin-top: 5px;
+    margin-right: 0px;
+  }
+  
+  .add-icon {
+    font-size: 24px;
+    color: #655586;
+  }
+  
+  .tooltiptext {
+    visibility: hidden;
+    width: 70px;
+    background-color: #5B5E60;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+    bottom: -20px;
+    margin-left: -65px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* User button */
+  .user {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    width: 70px;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user img {
+    width: 100%; 
+    height: 35px;
+  }
+  
+  /* Todo list */
+  .todo-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    overflow-y: auto;
+  }
+  
+  /* Status column */
+  .status-column {
+    width: 320px;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 100%;
+  }
+  
+  .status-title {
+    display: flex;
+    align-items: center;
+    background-color: #212529;
+    height: 30px;
+    padding-top: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 10px;
+    color: #fff;
+  }
+  
+  .todo-icon{
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    color: #8E7AD2;
+  }
+  .doing-icon{
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    color: #FE913E;
+  }
+  .done-icon {
+    font-size: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #39AC95;
+  }
+  
+  .todo-item {
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 300px;
+    background-color: #212529;
+    cursor: grab;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  
+  .edit{
+    display: flex;
+    margin-bottom: 20px;
+    margin: 0;
+  }
+  .display-details {
+    display: flex;
+    color: #646C74;
+  }
+  
+  .display {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+   .detail {
+    margin-bottom: 10px;
+    margin-right: 20px;
+  } 
+  .details-item{
+    margin-left: 50px;
+  }
+  
+  .edit-icon {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+  }
+  .todo-item:hover .edit-icon{
+        opacity: 1;
+  }
+  .edit-input {
+    width: 150px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    transition: border-bottom-color 0.3s;
+    margin-right: 100px;
+    border: none; 
+    color: white;
+    border-bottom: 1px solid white; 
+  }
+  .edit-importance{
+    width: 150px;
+    padding: 5px;
+    margin-bottom: 10px;
+    /* background-color: transparent;
+    transition: border-bottom-color 0.3s; */
+    margin-right: 100px;
+    border: none; 
+    color: black;
+    border-bottom: 1px solid white; 
+  }
+  
+  .input-add {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Quote banner */
+  .quote-banner {
+    padding-top: 10px;
+    background: linear-gradient(to top,#332d57,#604482);
+    color: white;
+    display: flex;
+    max-height: 50px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-icon {
+    cursor: pointer;
+    margin-bottom: 6px;
+    margin-right: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .quote-banner:hover .close-icon{
+    opacity: 1;
+  }
+  .createdButton {
+    cursor: pointer;
+    color: #8D74AC;
+    margin-left: 90%;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  

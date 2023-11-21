@@ -1,0 +1,209 @@
+<div class="body">
+    <nav class="nav">
+        <div class="img-icon"><a href="#"> <img src="assets/icon.jpg" alt="Logo"> </a> </div>
+
+        <div class="search-container"> <input type="text" class="search-input" placeholder="What you are looking for?">
+            <mat-icon class="search-icon">search</mat-icon> </div>
+        <div class="tooltip"> <mat-icon class="add-icon" (click)="addTask()">add_circle_outline</mat-icon>
+            <div class="tooltiptext">Add Item</div>
+        </div> <button class="user" (click)="showTooltip()"><img src="assets\user.png"></button>
+        <!-- <div id="myTooltip" class="mytooltip">
+            <div><button class="user2"><img src="assets\user.png"></button></div>
+            <div style="margin-left: 20px;">
+                <p>{{useremail}}</p>
+                <div style="display: flex; margin-left: 20px;">
+                    <p>Log Out </p><mat-icon class="logout-button" (click)="logout()">logout</mat-icon>
+                </div>
+            </div>
+        </div> -->
+    </nav>
+    <div class="quote-banner" *ngIf="showQuoteBanner">
+        <p><em>{{ quote }}</em></p> <mat-icon class="close-icon" (click)="hideQuoteBanner()">close</mat-icon>
+    </div>
+    <div class="todo-list">
+        <div class="status-column" cdkDropList [cdkDropListData]="tasksToDo"
+            (cdkDropListDropped)="drop($event,'To Do')">
+            <div class="status-title"> <mat-icon class="todo-icon">format_list_bulleted</mat-icon>
+                <p>To Do</p>
+            </div>
+            <div *ngFor="let todo of tasksToDo; let i = index" class="todo-item" cdkDrag>
+                <div class="title" *ngIf="!todo.editMode">
+                    <div class="title">
+                        <p>{{ todo.title }}</p>
+                    </div>
+                    <div><mat-icon (click)="enableEditMode(todo)" class="edit-icon">edit</mat-icon></div>
+                </div>
+                <div class="edit" *ngIf="todo.editMode">
+                    <div class="title"><input class="edit-input" [(ngModel)]="todo.title" placeholder="Add title.." />
+                    </div>
+                    <div><mat-icon class="edit-icon" (click)="disableEditMode(todo)">save</mat-icon></div>
+                </div>
+                <div class="display-details">
+                    <div>
+                        <div class="display">category</div>
+                        <div class="display">Due Date</div>
+                        <div class="display">Estimate</div>
+                        <div class="display">Importance</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.category }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.category" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.dueDate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input" type="date"
+                                [(ngModel)]="todo.dueDate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.estimate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.estimate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title" id="importance">
+                                <p>{{ todo.importance }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <select class="edit-importance"
+                                [(ngModel)]="todo.importance">
+                                <option value="LOW">Low</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="HIGH">High</option>
+                            </select> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="status-column" cdkDropList [cdkDropListData]="tasksDoing"
+            (cdkDropListDropped)="drop($event,'Doing')">
+            <div class="status-title"> <mat-icon class="doing-icon">checklist-rtl</mat-icon>
+                <p>Doing</p>
+            </div>
+            <div *ngFor="let todo of tasksDoing; let i = index" class="todo-item" id="todo-item" cdkDrag>
+                <div class="title" *ngIf="!todo.editMode">
+                    <div class="title">
+                        <p>{{ todo.title }}</p>
+                    </div>
+                    <div><mat-icon (click)="enableEditMode(todo)" class="edit-icon">edit</mat-icon></div>
+                </div>
+                <div class="edit" *ngIf="todo.editMode">
+                    <div class="title"><input class="edit-input" [(ngModel)]="todo.title" placeholder="Add title.." />
+                    </div>
+                    <div><mat-icon class="edit-icon" (click)="disableEditMode(todo)">save</mat-icon></div>
+                </div>
+                <div class="display-details">
+                    <div>
+                        <div class="display">category</div>
+                        <div class="display">Due Date</div>
+                        <div class="display">Estimate</div>
+                        <div class="display">Importance</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.category }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.category" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.dueDate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input" type="date"
+                                [(ngModel)]="todo.dueDate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.estimate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.estimate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.importance }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <select class="edit-importance"
+                                [(ngModel)]="todo.importance">
+                                <option value="LOW">Low</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="HIGH">High</option>
+                            </select> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="status-column" cdkDropList [cdkDropListData]="tasksDone" (cdkDropListDropped)="drop($event,'Done')">
+            <div class="status-title"> <mat-icon class="done-icon">check_circle</mat-icon>
+                <p>Done</p>
+            </div>
+            <div *ngFor="let todo of tasksDone; let i = index" class="todo-item" cdkDrag>
+                <div class="title" *ngIf="!todo.editMode">
+                    <div class="title">
+                        <p>{{ todo.title }}</p>
+                    </div>
+                    <div><mat-icon (click)="enableEditMode(todo)" class="edit-icon">edit</mat-icon></div>
+                </div>
+                <div class="edit" *ngIf="todo.editMode">
+                    <div class="title"><input class="edit-input" [(ngModel)]="todo.title" placeholder="Add title.." />
+                    </div>
+                    <div><mat-icon class="edit-icon" (click)="disableEditMode(todo)">save</mat-icon></div>
+                </div>
+                <div class="display-details">
+                    <div>
+                        <div class="display">category</div>
+                        <div class="display">Due Date</div>
+                        <div class="display">Estimate</div>
+                        <div class="display">Importance</div>
+                    </div>
+                    <div class="details-item">
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.category }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.category" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.dueDate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input" type="date"
+                                [(ngModel)]="todo.dueDate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.estimate }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <input class="edit-input"
+                                [(ngModel)]="todo.estimate" /> </div>
+                        <div class="detail" *ngIf="!todo.editMode">
+                            <div class="title">
+                                <p>{{ todo.importance }}</p>
+                            </div>
+                        </div>
+                        <div class="edit" *ngIf="todo.editMode"> <select class="edit-importance"
+                                [(ngModel)]="todo.importance">
+                                <option value="LOW">Low</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="HIGH">High</option>
+                            </select> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;" *ngIf="!showQuoteBanner"> <mat-icon class="createdButton"
+                (click)="showQuote()">info</mat-icon> </div>
+    </div>
+</div>
